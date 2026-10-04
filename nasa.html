@@ -1,63 +1,345 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>NASA Attribution — Planets Z</title>
+
+  <style>
+    :root {
+      color-scheme: light dark;
+
+      --background: #f4f6f8;
+      --surface: #ffffff;
+      --text: #171a1f;
+      --secondary-text: #68707d;
+      --border: #e5e8ec;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --heading: #111318;
+      --shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --background: #0d1015;
+        --surface: #151920;
+        --text: #e7eaf0;
+        --secondary-text: #9aa3b2;
+        --border: #272d36;
+        --accent: #60a5fa;
+        --accent-soft: #172033;
+        --heading: #ffffff;
+        --shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 48px 20px;
+      background: var(--background);
+      color: var(--text);
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .document {
+      width: 100%;
+      max-width: 860px;
+      margin: 0 auto;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .header {
+      padding: 56px 64px 48px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      margin-bottom: 20px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .badge::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--heading);
+      font-size: clamp(32px, 5vw, 46px);
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+      font-weight: 750;
+    }
+
+    .subtitle {
+      max-width: 680px;
+      margin: 18px 0 0;
+      color: var(--secondary-text);
+      font-size: 17px;
+      line-height: 1.65;
+    }
+
+    .updated {
+      margin-top: 28px;
+      color: var(--secondary-text);
+      font-size: 14px;
+    }
+
+    .updated strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .content {
+      padding: 48px 64px 64px;
+    }
+
+    .section {
+      padding: 0 0 42px;
+      margin-bottom: 42px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section:last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .section-number {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0 0 16px;
+      color: var(--heading);
+      font-size: 24px;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      margin: 0 0 16px;
+      font-size: 16px;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    .notice {
+      margin: 24px 0;
+      padding: 20px 22px;
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 12px;
+      background: var(--accent-soft);
+    }
+
+    .notice p {
+      margin: 0;
+      font-size: 15px;
+    }
+
+    .footer {
+      padding: 24px 64px;
+      border-top: 1px solid var(--border);
+      color: var(--secondary-text);
+      font-size: 13px;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 700px) {
+      body {
+        padding: 16px 12px;
+      }
+
+      .document {
+        border-radius: 18px;
+      }
+
+      .header {
+        padding: 36px 24px 32px;
+      }
+
+      .content {
+        padding: 36px 24px 44px;
+      }
+
+      .footer {
+        padding: 20px 24px;
+      }
+
+      h1 {
+        font-size: 34px;
+      }
+
+      .subtitle {
+        font-size: 15px;
+      }
+
+      h2 {
+        font-size: 21px;
+      }
+
+      p {
+        font-size: 15px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <h1>NASA Attribution</h1>
+  <main class="document">
 
-  <p><strong>Last updated:</strong> October 4, 2026</p>
+    <header class="header">
+      <div class="badge">Legal document</div>
 
-  <h2>NASA Content</h2>
+      <h1>NASA Attribution</h1>
 
-  <p>
-    Planets Z uses publicly available information and data provided through
-    NASA services, including the Astronomy Picture of the Day (APOD) and
-    Earth Polychromatic Imaging Camera (EPIC) services.
-  </p>
+      <p class="subtitle">
+        Information about the use of NASA-provided content and services
+        in the Planets Z application.
+      </p>
 
-  <p>
-    NASA is not affiliated with, sponsored by, or responsible for the
-    Planets Z application.
-  </p>
+      <div class="updated">
+        <strong>Last updated:</strong> October 4, 2026
+      </div>
+    </header>
 
-  <h2>Copyright</h2>
+    <div class="content">
 
-  <p>
-    NASA-produced content is generally not subject to copyright in the
-    United States. However, some content provided through NASA services may
-    be copyrighted by third parties.
-  </p>
+      <section class="section">
+        <span class="section-number">01</span>
 
-  <p>
-    Third-party copyrighted material remains the property of its respective
-    copyright holder. Where copyright or creator information is provided,
-    Planets Z displays the available attribution information.
-  </p>
+        <h2>NASA Content</h2>
 
-  <h2>No NASA Endorsement</h2>
+        <p>
+          Planets Z uses publicly available information and data provided
+          through NASA services, including the Astronomy Picture of the Day
+          (APOD) and Earth Polychromatic Imaging Camera (EPIC) services.
+        </p>
 
-  <p>
-    The use of NASA information or services does not imply endorsement,
-    sponsorship, or approval of Planets Z by NASA.
-  </p>
+        <div class="notice">
+          <p>
+            NASA is not affiliated with, sponsored by, or responsible for
+            the Planets Z application.
+          </p>
+        </div>
+      </section>
 
-  <h2>NASA Trademarks and Logos</h2>
+      <section class="section">
+        <span class="section-number">02</span>
 
-  <p>
-    NASA names, insignia, logos, and other identifying marks are subject to
-    applicable NASA policies and are not used by Planets Z to imply official
-    affiliation or endorsement.
-  </p>
+        <h2>Copyright</h2>
 
-  <h2>External Resources</h2>
+        <p>
+          NASA-produced content is generally not subject to copyright in
+          the United States. However, some content provided through NASA
+          services may be copyrighted by third parties.
+        </p>
 
-  <p>
-    NASA content and services may change or become unavailable without
-    notice. Planets Z is not responsible for changes to external NASA
-    services.
-  </p>
+        <p>
+          Third-party copyrighted material remains the property of its
+          respective copyright holder. Where copyright or creator
+          information is provided, Planets Z displays the available
+          attribution information.
+        </p>
+      </section>
+
+      <section class="section">
+        <span class="section-number">03</span>
+
+        <h2>No NASA Endorsement</h2>
+
+        <p>
+          The use of NASA information or services does not imply endorsement,
+          sponsorship, or approval of Planets Z by NASA.
+        </p>
+      </section>
+
+      <section class="section">
+        <span class="section-number">04</span>
+
+        <h2>NASA Trademarks and Logos</h2>
+
+        <p>
+          NASA names, insignia, logos, and other identifying marks are
+          subject to applicable NASA policies and are not used by Planets Z
+          to imply official affiliation or endorsement.
+        </p>
+      </section>
+
+      <section class="section">
+        <span class="section-number">05</span>
+
+        <h2>External Resources</h2>
+
+        <p>
+          NASA content and services may change or become unavailable without
+          notice. Planets Z is not responsible for changes to external NASA
+          services.
+        </p>
+      </section>
+
+    </div>
+
+    <footer class="footer">
+      © 2026 Planets Z · NASA Attribution
+    </footer>
+
+  </main>
 </body>
 </html>
+```
